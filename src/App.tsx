@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import * as Calculator from './Calc';
-import { Types, ForAttackResult, ForDefenseResult } from './Calc';
+import { Types } from './Calc';
 
 
 const localizeType = (type: number): string => {
@@ -30,7 +30,7 @@ const localizeType = (type: number): string => {
   }
 };
 
-const TypesForAttack: React.FC<Types> = (type: Types) => {
+const TypesForAttack: React.FC<{ type: Types }> = ({ type }: { type: Types }) => {
   const { x2, x1, x05, x0 } = Calculator.getForAttack(type);
   return (
     <>
@@ -74,8 +74,8 @@ const App: React.FC = () => {
       {Array.from(Array(18).keys()).map(t => <button key={t} onClick={() => setSelectedType(t)}>{localizeType(t)}</button>)}
 
       <p>{`Tipo ${selectedType}:`}</p>
-      {/* <ResultComponent x2={x2} x1={x1} x05={x05} x0={x0} /> */}
-      <TypesForDefense primaryType={selectedType} secondaryType={Types.ROCK} />
+      <TypesForAttack type={selectedType} />
+      {/* <TypesForDefense primaryType={selectedType} secondaryType={Types.ROCK} /> */}
     </div>
   );
 }
