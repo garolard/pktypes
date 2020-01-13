@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 import * as Calculator from './Calc';
-import { Types } from './Calc';
+import { Types, ForAttackResult, ForDefenseResult } from './Calc';
 
 
 const localizeType = (type: number): string => {
@@ -30,21 +30,52 @@ const localizeType = (type: number): string => {
   }
 };
 
+const TypesForAttack: React.FC<Types> = (type: Types) => {
+  const { x2, x1, x05, x0 } = Calculator.getForAttack(type);
+  return (
+    <>
+      <p>Hace un x2 a los tipos:</p>
+      {x2.map(t => <span key={`x2${t}`}><strong>{localizeType(t)}</strong>, </span>)}
+      <p>Hace un x1 a los tipos:</p>
+      {x1.map(t => <span key={`x1${t}`}><strong>{localizeType(t)}</strong>, </span>)}
+      <p>Hace un x1/2 a los tipos:</p>
+      {x05.map(t => <span key={`x05${t}`}><strong>{localizeType(t)}</strong>, </span>)}
+      <p>Hace un x0 a los tipos:</p>
+      {x0.map(t => <span key={`x0${t}`}><strong>{localizeType(t)}</strong>, </span>)}
+    </>
+  );
+}
+
+const TypesForDefense: React.FC<{ primaryType: Types, secondaryType?: Types }> = ({ primaryType, secondaryType }: { primaryType: Types, secondaryType?: Types }) => {
+  const { x4, x2, x1, x05, x0 } = Calculator.getForDefense(primaryType, secondaryType ? secondaryType : -1);
+  return (
+    <>
+      <p>Recibe un x4 de los tipos:</p>
+      {x4.map(t => <span key={`x4${t}`}><strong>{localizeType(t)}</strong>, </span>)}
+      <p>Recibe un x2 de los tipos:</p>
+      {x2.map(t => <span key={`x2${t}`}><strong>{localizeType(t)}</strong>, </span>)}
+      <p>Recibe un x1 de los tipos:</p>
+      {x1.map(t => <span key={`x1${t}`}><strong>{localizeType(t)}</strong>, </span>)}
+      <p>Recibe un x1/2 de los tipos:</p>
+      {x05.map(t => <span key={`x05${t}`}><strong>{localizeType(t)}</strong>, </span>)}
+      <p>Recibe un x0 de los tipos:</p>
+      {x0.map(t => <span key={`x0${t}`}><strong>{localizeType(t)}</strong>, </span>)}
+    </>
+  );
+}
+
 const App: React.FC = () => {
 
-  const { x2, x1, x05, x0 } = Calculator.getForAttack(Types.FIRE);
+  const [selectedType, setSelectedType] = useState(-1);
 
   return (
     <div className="App">
-      <p>Tipo Fuego:</p>
-      <p>Hace un x2 a los tipos:</p>
-      {x2.map(t => <span><strong>{localizeType(t)}</strong>, </span>)}
-      <p>Hace un x1 a los tipos:</p>
-      {x1.map(t => <span><strong>{localizeType(t)}</strong>, </span>)}
-      <p>Hace un x1/2 a los tipos:</p>
-      {x05.map(t => <span><strong>{localizeType(t)}</strong>, </span>)}
-      <p>Hace un x0 a los tipos:</p>
-      {x0.map(t => <span><strong>{localizeType(t)}</strong>, </span>)}
+
+      {Array.from(Array(18).keys()).map(t => <button key={t} onClick={() => setSelectedType(t)}>{localizeType(t)}</button>)}
+
+      <p>{`Tipo ${selectedType}:`}</p>
+      {/* <ResultComponent x2={x2} x1={x1} x05={x05} x0={x0} /> */}
+      <TypesForDefense primaryType={selectedType} secondaryType={Types.ROCK} />
     </div>
   );
 }
