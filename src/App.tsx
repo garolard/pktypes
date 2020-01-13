@@ -5,6 +5,11 @@ import './App.css';
 import * as Calculator from './Calc';
 import { Types } from './Calc';
 
+enum Modes {
+  ATTACK,
+  DEFENSE,
+  POKEDEX
+}
 
 const localizeType = (type: number): string => {
   switch (type) {
@@ -66,16 +71,32 @@ const TypesForDefense: React.FC<{ primaryType: Types, secondaryType?: Types }> =
 
 const App: React.FC = () => {
 
-  const [selectedType, setSelectedType] = useState(-1);
+  const [mode, setMode] = useState(Modes.ATTACK);
+  const [primaryType, setPrimaryType] = useState(-1);
+  const [secondaryType, setSecondaryType] = useState(-1);
+
+  const typesButtons = (setTypeFn: React.Dispatch<React.SetStateAction<number>>) => {
+    return Array.from(Array(18).keys())
+      .map(t => <button key={t} onClick={() => setTypeFn(t)}>{localizeType(t)}</button>);
+  };
 
   return (
     <div className="App">
 
-      {Array.from(Array(18).keys()).map(t => <button key={t} onClick={() => setSelectedType(t)}>{localizeType(t)}</button>)}
+      <div>
+        <button onClick={() => setMode(Modes.ATTACK)}>Ataque</button>
+        <button onClick={() => setMode(Modes.DEFENSE)}>Defensa</button>
+      </div>
 
-      <p>{`Tipo ${selectedType}:`}</p>
-      <TypesForAttack type={selectedType} />
-      {/* <TypesForDefense primaryType={selectedType} secondaryType={Types.ROCK} /> */}
+      <div>{typesButtons(setPrimaryType)}</div>
+      <div>{mode === Modes.DEFENSE ? typesButtons(setSecondaryType) : null}</div>
+
+      <p>{`Tipo ${primaryType}:`}</p>
+      {
+        mode === Modes.ATTACK
+          ? <TypesForAttack type={primaryType} />
+          : <TypesForDefense primaryType={primaryType} secondaryType={secondaryType} />
+      }
     </div>
   );
 }
