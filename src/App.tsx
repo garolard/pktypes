@@ -69,18 +69,23 @@ const TypesForDefense: React.FC<{ primaryType: Types, secondaryType?: Types }> =
   );
 }
 
-const typesButtons = (setTypeFn: React.Dispatch<React.SetStateAction<number>>) => {
-  return Array.from(Array(18).keys()).map(t => {
-    const typeClass = `type-button ${Types[t].toLocaleLowerCase()}`;
-    return <button key={t} className={typeClass} onClick={() => setTypeFn(t)}>{localizeType(t)}</button>
-  });
-};
-
 const App: React.FC = () => {
 
   const [mode, setMode] = useState(Modes.ATTACK);
   const [primaryType, setPrimaryType] = useState(-1);
   const [secondaryType, setSecondaryType] = useState(-1);
+
+  const typesButtons = (primaryOrSecondary: 1 | 2, setTypeFn: React.Dispatch<React.SetStateAction<number>>) => {
+    return Array.from(Array(18).keys()).map(t => {
+      let typeClass = `type-button ${Types[t].toLocaleLowerCase()}`;
+
+      if ((primaryOrSecondary === 1 && t === primaryType) ||
+          (primaryOrSecondary === 2 && t === secondaryType))
+        typeClass += ' selected';
+      
+      return <button key={t} className={typeClass} onClick={() => setTypeFn(t)}>{localizeType(t)}</button>
+    });
+  };
 
   return (
     <div className="App">
@@ -99,11 +104,11 @@ const App: React.FC = () => {
       <section className='app-container'>
         <div>
           <h5>Elige un tipo</h5>
-          <div className='buttons-grid'>{typesButtons(setPrimaryType)}</div>
+          <div className='buttons-grid'>{typesButtons(1, setPrimaryType)}</div>
         </div>
         <div style={{ display: mode === Modes.DEFENSE ? 'grid' : 'none'}}>
           <h5>Elige un segundo tipo</h5>
-          <div className='buttons-grid'>{mode === Modes.DEFENSE ? typesButtons(setSecondaryType) : null}</div>
+          <div className='buttons-grid'>{mode === Modes.DEFENSE ? typesButtons(2, setSecondaryType) : null}</div>
         </div>
         
 

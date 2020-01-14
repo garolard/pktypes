@@ -77,6 +77,10 @@
   transition: background-color .25s ease-in-out;
 }
 
+.type-button.selected {
+  background-color: #ccc;
+}
+
 .type-button:hover {
   background-color: #fafafa;
 }
