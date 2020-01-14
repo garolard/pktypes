@@ -1,0 +1,42 @@
+@media (max-width: 420px) {
+  .app-header {
+    font-size: .75em;
+  }
+
+	.app-container {
+		width: 90%;
+		max-width: 100%;
+  }
+  
+  .navigation > .tabs-container {
+    width: 65%;    
+    max-width: 65%;
+  }
+
+  .tabs-container > button {
+    font-size: 14px;
+  }
+
+  .tabs-container > button.selected {
+    margin-bottom: -1px;
+  }
+
+  .buttons-grid {
+    padding: 0;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .type-button {
+    min-height: 28px;
+    padding: 0 16px 0 28px;
+    border-radius: 16px;
+  }
+
+  .type-button::before {
+    width: 16px;
+    height: 16px;
+    top: calc(50% - 9px);
+    left: calc(0% + 6px);
+  }
+
+}
