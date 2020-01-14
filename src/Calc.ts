@@ -15,7 +15,7 @@ export enum Types {
   ROCK,
   DARK,
   GROUND,
-  POSION,
+  POISON,
   FLY
 }
 

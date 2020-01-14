@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import * as Calculator from './Calc';
@@ -29,7 +28,7 @@ const localizeType = (type: number): string => {
     case Types.ROCK: return 'Roca';
     case Types.DARK: return 'Siniestro';
     case Types.GROUND: return 'Tierra';
-    case Types.POSION: return 'Veneno';
+    case Types.POISON: return 'Veneno';
     case Types.FLY: return 'Volador';
     default: return '';
   }
@@ -76,8 +75,10 @@ const App: React.FC = () => {
   const [secondaryType, setSecondaryType] = useState(-1);
 
   const typesButtons = (setTypeFn: React.Dispatch<React.SetStateAction<number>>) => {
-    return Array.from(Array(18).keys())
-      .map(t => <button key={t} onClick={() => setTypeFn(t)}>{localizeType(t)}</button>);
+    return Array.from(Array(18).keys()).map(t => {
+      const typeClass = `type-button ${Types[t].toLocaleLowerCase()}`;
+      return <button key={t} className={typeClass} onClick={() => setTypeFn(t)}>{localizeType(t)}</button>
+    });
   };
 
   return (

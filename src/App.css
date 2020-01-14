@@ -1,38 +1,112 @@
-.App {
-  text-align: center;
+.type-button {
+  position: relative;
+  min-height: 36px;
+  padding: 0 18px 0 36px;
+  text-transform: uppercase;
+  font-weight: bold;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 18px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.type-button::before {
+  content: "";
+  position: absolute;
+  background: grey;
+  width: 18px;
+  height: 18px;
+  top: calc(50% - 10px);
+  left: calc(0% + 9px);
+  border: 1px solid grey;
+  border-radius: 50%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.steel.type-button::before {
+  background-color: grey;
+  border-color: #cfcfcf;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.water.type-button::before {
+  background-color: #3495eb;
+  border-color: #74b7f1;
 }
 
-.App-link {
-  color: #61dafb;
+.bug.type-button::before {
+  background-color: #caed6b;
+  border-color: #dff4a4;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.dragon.type-button::before {
+  background-color: #69096e;
+  border-color: #e113ec;
+}
+
+.electric.type-button::before {
+  background-color: yellow;
+  border-color: #fcfc74;
+}
+
+.ghost.type-button::before {
+  background-color: #514170;
+  border-color: #907db5;
+}
+
+.fire.type-button::before {
+  background-color: #eb3717;
+  border-color: #f38572;
+}
+
+.fairy.type-button::before {
+  background-color: pink;
+  border-color: #ffc7f7;
+}
+
+.ice.type-button::before {
+  background-color: #93ede9;
+  border-color: #d3f8f6;
+}
+
+.fight.type-button::before {
+  background-color: #8c4029;
+  border-color: #cb6a4d;
+}
+
+.normal.type-button::before {
+  background-color: #c9b5a9;
+  border-color: #ebe4e0;
+}
+
+.grass.type-button::before {
+  background-color: #77e36d;
+  border-radius: #afefa9;
+}
+
+.psychic.type-button::before {
+  background-color: #e681b3;
+  border-color: #f7d4e6;
+}
+
+.rock.type-button::before {
+  background-color: #baaa7b;
+  border-color: #dcd4bc;
+}
+
+.dark.type-button::before {
+  background-color: #30280f;
+  border-color: #746025;
+}
+
+.ground.type-button::before {
+  background-color: #e6be43;
+  border-color: #f3e0a5;
+}
+
+.poison.type-button::before {
+  background-color: #5d326b;
+  border-color: #9652ad;
+}
+
+.fly.type-button::before {
+  background-color: #5e99e6;
+  border-color: #bdd5f5;
 }
