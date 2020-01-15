@@ -100,6 +100,17 @@
   transition: background-color .25s ease-in-out;
 }
 
+.type-button:disabled {
+  background-color: #f2f2f2;
+  color: #ccc;
+  border-color: #ccc;
+  box-shadow: none;
+}
+
+.type-button:disabled::before {
+  opacity: .6;
+}
+
 .type-button.selected {
   background-color: #ccc;
 }

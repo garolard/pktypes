@@ -19,15 +19,30 @@ const App: React.FC = () => {
   const [secondaryType, setSecondaryType] = useState(-1);
 
   const typesButtons = (primaryOrSecondary: 1 | 2, setTypeFn: React.Dispatch<React.SetStateAction<number>>) => {
-    return Array.from(Array(18).keys()).map(t => {
+    const buttons = Array.from(Array(18).keys()).map(t => {
+
+      const click = () => {
+        if (primaryOrSecondary === 1 && secondaryType === t)
+          setSecondaryType(-1);
+        setTypeFn(t);
+      };
+
       let typeClass = `type-button ${Types[t].toLocaleLowerCase()}`;
 
       if ((primaryOrSecondary === 1 && t === primaryType) ||
-          (primaryOrSecondary === 2 && t === secondaryType))
+          ((primaryOrSecondary === 2 && t === secondaryType) &&
+          (primaryOrSecondary === 2 && primaryType !== t)))
         typeClass += ' selected';
       
-      return <button key={t} className={typeClass} onClick={() => setTypeFn(t)}>{localizeType(t)}</button>
+      return <button key={t} className={typeClass} disabled={primaryOrSecondary === 2 && primaryType === t} onClick={click}>{localizeType(t)}</button>
     });
+
+    if (primaryOrSecondary === 2) {
+      const typeClass = `type-button ${secondaryType < 0 ? 'selected' : ''}`;
+      return [<button className={typeClass} onClick={() => setSecondaryType(-1)}>Ninguno</button>].concat(buttons);
+    }
+    
+    return buttons;
   };
 
   return (
