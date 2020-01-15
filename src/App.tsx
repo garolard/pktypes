@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './App.css';
 import './App.small.css';
 import { Header } from './App.Header';
@@ -12,7 +12,12 @@ enum Modes {
   POKEDEX
 }
 
+const scrollToRef = (ref: React.RefObject<HTMLElement>) => ref.current!.scrollIntoView();
+
 const App: React.FC = () => {
+
+  const secondaryTypeRef = useRef(null);
+  const resultBoxRef = useRef(null);
 
   const [mode, setMode] = useState(Modes.ATTACK);
   const [primaryType, setPrimaryType] = useState(-1);
@@ -25,6 +30,14 @@ const App: React.FC = () => {
         if (primaryOrSecondary === 1 && secondaryType === t)
           setSecondaryType(-1);
         setTypeFn(t);
+
+        if (primaryOrSecondary === 1)
+          if (mode === Modes.ATTACK)
+            scrollToRef(resultBoxRef);
+          else
+            scrollToRef(secondaryTypeRef);
+        else
+          scrollToRef(resultBoxRef);
       };
 
       let typeClass = `type-button ${Types[t].toLocaleLowerCase()}`;
@@ -64,12 +77,12 @@ const App: React.FC = () => {
           <div className='buttons-grid'>{typesButtons(1, setPrimaryType)}</div>
         </div>
 
-        <div style={{ display: mode === Modes.DEFENSE ? 'grid' : 'none'}}>
+        <div ref={secondaryTypeRef} style={{ display: mode === Modes.DEFENSE ? 'grid' : 'none'}}>
           <h5>Elige un segundo tipo</h5>
           <div className='buttons-grid'>{mode === Modes.DEFENSE ? typesButtons(2, setSecondaryType) : null}</div>
         </div>
         
-        <div>
+        <div ref={resultBoxRef}>
           {
             mode === Modes.ATTACK
               ? <TypesForAttack type={primaryType} />

@@ -19,6 +19,10 @@
   --fly-color: #7babea;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .App {
   display: flex;
   flex-direction: column;
