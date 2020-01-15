@@ -67,7 +67,7 @@ export const TypesForDefense: React.FC<{ primaryType: Types, secondaryType?: Typ
 
   if (primaryType < 0) return null;
 
-  const { x4, x2, x1, x05, x0 } = Calculator.getForDefense(primaryType, secondaryType ? secondaryType : -1);
+  const { x4, x2, x1, x05, x025, x0 } = Calculator.getForDefense(primaryType, secondaryType ? secondaryType : -1);
   return (
     <div className='result-container'>
       <p>Recibe un x4 de los tipos:</p>
@@ -88,6 +88,11 @@ export const TypesForDefense: React.FC<{ primaryType: Types, secondaryType?: Typ
       <p>Recibe un x1/2 de los tipos:</p>
       <div className='result-group'>
         {x05.map(t => buildResultBox('dx05', t))}
+      </div>
+
+      <p>Recibe un x1/4 de los tipos:</p>
+      <div className='result-group'>
+        {x025.map(t => buildResultBox('dx025', t))}
       </div>
 
       <p>Recibe un x0 de los tipos:</p>

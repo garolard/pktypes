@@ -52,6 +52,7 @@ export type ForDefenseResult = {
   x2: number[];
   x1: number[];
   x05: number[];
+  x025: number[];
   x0: number[];
 }
 
@@ -103,6 +104,7 @@ export function getForDefense(primaryType: Types, secondaryType: Types): ForDefe
       x2: [],
       x1: [],
       x05: [],
+      x025: [],
       x0: []
     };
   
@@ -110,6 +112,7 @@ export function getForDefense(primaryType: Types, secondaryType: Types): ForDefe
   const x2: number[] = [];
   const x1: number[] = [];
   const x05: number[] = [];
+  const x025: number[] = [];
   const x0: number[] = [];
 
   for (let x = 0; x < 18; x++) {
@@ -119,6 +122,9 @@ export function getForDefense(primaryType: Types, secondaryType: Types): ForDefe
     switch (primaryFactor * secondaryFactor) {
       case 0:
         x0.push(x);
+        break;
+      case .25:
+        x025.push(x);
         break;
       case .5:
         x05.push(x);
@@ -140,6 +146,7 @@ export function getForDefense(primaryType: Types, secondaryType: Types): ForDefe
     x2,
     x1,
     x05,
+    x025,
     x0
   };
 }
