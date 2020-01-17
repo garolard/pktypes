@@ -1,6 +1,9 @@
 import React, { useState, useRef } from 'react';
 import './App.css';
 import './App.small.css';
+
+import { useTranslation } from 'react-i18next';
+
 import { Header } from './App.Header';
 import { Footer } from './App.Footer';
 import { TypesForAttack, TypesForDefense, localizeType } from './App.Results';
@@ -15,6 +18,8 @@ enum Modes {
 const scrollToRef = (ref: React.RefObject<HTMLElement>) => ref.current!.scrollIntoView();
 
 const App: React.FC = () => {
+
+  const { t } = useTranslation();
 
   const secondaryTypeRef = useRef(null);
   const resultBoxRef = useRef(null);
@@ -73,12 +78,12 @@ const App: React.FC = () => {
       <section className='app-container'>
 
         <div>
-          <h5>Elige un tipo</h5>
+          <h5>{t('PRIMARY_TYPE_LBL')}</h5>
           <div className='buttons-grid'>{typesButtons(1, setPrimaryType)}</div>
         </div>
 
         <div ref={secondaryTypeRef} style={{ display: mode === Modes.DEFENSE ? 'grid' : 'none'}}>
-          <h5>Elige un segundo tipo</h5>
+          <h5>{t('SECONDARY_TYPE_LBL')}</h5>
           <div className='buttons-grid'>{mode === Modes.DEFENSE ? typesButtons(2, setSecondaryType) : null}</div>
         </div>
         

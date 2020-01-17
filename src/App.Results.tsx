@@ -1,27 +1,30 @@
 import * as React from 'react';
+import i18n from 'i18next';
+import { useTranslation } from 'react-i18next';
+
 import * as Calculator from './Calc';
 import { Types } from './Calc';
 
 export const localizeType = (type: number): string => {
   switch (type) {
-    case Types.STEEL: return 'Acero';
-    case Types.WATER: return 'Agua';
-    case Types.BUG: return 'Bicho';
-    case Types.DRAGON: return 'Dragón';
-    case Types.ELECTRIC: return 'Eléctrico';
-    case Types.GHOST: return 'Fantasma';
-    case Types.FIRE: return 'Fuego';
-    case Types.FAIRY: return 'Hada';
-    case Types.ICE: return 'Hielo';
-    case Types.FIGHT: return 'Lucha';
-    case Types.NORMAL: return 'Normal';
-    case Types.GRASS: return 'Hierba';
-    case Types.PSYCHIC: return 'Psíquico';
-    case Types.ROCK: return 'Roca';
-    case Types.DARK: return 'Siniestro';
-    case Types.GROUND: return 'Tierra';
-    case Types.POISON: return 'Veneno';
-    case Types.FLY: return 'Volador';
+    case Types.STEEL: return i18n.t('TYPE_STEEL');
+    case Types.WATER: return i18n.t('TYPE_WATER');
+    case Types.BUG: return i18n.t('TYPE_BUG');
+    case Types.DRAGON: return i18n.t('TYPE_DRAGON');
+    case Types.ELECTRIC: return i18n.t('TYPE_ELECTRIC');
+    case Types.GHOST: return i18n.t('TYPE_GHOST');
+    case Types.FIRE: return i18n.t('TYPE_FIRE');
+    case Types.FAIRY: return i18n.t('TYPE_FAIRY');
+    case Types.ICE: return i18n.t('TYPE_ICE');
+    case Types.FIGHT: return i18n.t('TYPE_FIGHT');
+    case Types.NORMAL: return i18n.t('TYPE_NORMAL');
+    case Types.GRASS: return i18n.t('TYPE_GRASS');
+    case Types.PSYCHIC: return i18n.t('TYPE_PSYCHIC');
+    case Types.ROCK: return i18n.t('TYPE_ROCK');
+    case Types.DARK: return i18n.t('TYPE_DARK');
+    case Types.GROUND: return i18n.t('TYPE_GROUND');
+    case Types.POISON: return i18n.t('TYPE_POISON');
+    case Types.FLY: return i18n.t('TYPE_FLY');
     default: return '';
   }
 };
@@ -35,27 +38,29 @@ const buildResultBox = (key: string, type: Types) => {
 
 export const TypesForAttack: React.FC<{ type: Types }> = ({ type }: { type: Types }) => {
 
+  const { t } = useTranslation();
+
   if (type < 0) return null;
 
   const { x2, x1, x05, x0 } = Calculator.getForAttack(type);
   return (
     <div className='result-container'>
-      <p>Hace un x2 a los tipos:</p>
+      <p>{t('DEALS_2X_LBL')}</p>
       <div className='result-group'>
         {x2.map(t => buildResultBox('x2', t))}
       </div>
 
-      <p>Hace un x1 a los tipos:</p>
+      <p>{t('DEALS_1X_LBL')}</p>
       <div className='result-group'>
         {x1.map(t => buildResultBox('x1', t))}
       </div>
 
-      <p>Hace un x1/2 a los tipos:</p>
+      <p>{t('DEALS_05X_LBL')}</p>
       <div className='result-group'>
         {x05.map(t => buildResultBox('x05', t))}
       </div>
 
-      <p>Hace un x0 a los tipos:</p>
+      <p>{t('DEALS_0X_LBL')}</p>
       <div className='result-group'>
         {x0.map(t => buildResultBox('x0', t))}
       </div>
@@ -65,37 +70,39 @@ export const TypesForAttack: React.FC<{ type: Types }> = ({ type }: { type: Type
 
 export const TypesForDefense: React.FC<{ primaryType: Types, secondaryType?: Types }> = ({ primaryType, secondaryType }: { primaryType: Types, secondaryType?: Types }) => {
 
+  const { t } = useTranslation();
+
   if (primaryType < 0) return null;
 
   const { x4, x2, x1, x05, x025, x0 } = Calculator.getForDefense(primaryType, secondaryType ? secondaryType : -1);
   return (
     <div className='result-container'>
-      <p>Recibe un x4 de los tipos:</p>
+      <p>{t('TAKES_4X_LBL')}</p>
       <div className='result-group'>
         {x4.map(t => buildResultBox('dx4', t))}
       </div>
 
-      <p>Recibe un x2 de los tipos:</p>
+      <p>{t('TAKES_2X_LBL')}</p>
       <div className='result-group'>
         {x2.map(t => buildResultBox('dx2', t))}
       </div>
 
-      <p>Recibe un x1 de los tipos:</p>
+      <p>{t('TAKES_1X_LBL')}</p>
       <div className='result-group'>
         {x1.map(t => buildResultBox('dx1', t))}
       </div>
 
-      <p>Recibe un x1/2 de los tipos:</p>
+      <p>{t('TAKES_05X_LBL')}</p>
       <div className='result-group'>
         {x05.map(t => buildResultBox('dx05', t))}
       </div>
 
-      <p>Recibe un x1/4 de los tipos:</p>
+      <p>{t('TAKES_025X_LBL')}</p>
       <div className='result-group'>
         {x025.map(t => buildResultBox('dx025', t))}
       </div>
 
-      <p>Recibe un x0 de los tipos:</p>
+      <p>{t('TAKES_0X_LBL')}</p>
       <div className='result-group'>
         {x0.map(t => buildResultBox('dx0', t))}
       </div>
