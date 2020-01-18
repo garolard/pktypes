@@ -45,25 +45,59 @@ export const TypesForAttack: React.FC<{ type: Types }> = ({ type }: { type: Type
   const { x2, x1, x05, x0 } = Calculator.getForAttack(type);
   return (
     <div className='result-container'>
-      <p>{t('DEALS_2X_LBL')}</p>
-      <div className='result-group'>
-        {x2.map(t => buildResultBox('x2', t))}
-      </div>
 
-      <p>{t('DEALS_1X_LBL')}</p>
-      <div className='result-group'>
-        {x1.map(t => buildResultBox('x1', t))}
-      </div>
-
-      <p>{t('DEALS_05X_LBL')}</p>
-      <div className='result-group'>
-        {x05.map(t => buildResultBox('x05', t))}
-      </div>
-
-      <p>{t('DEALS_0X_LBL')}</p>
-      <div className='result-group'>
-        {x0.map(t => buildResultBox('x0', t))}
-      </div>
+      {
+        x2.length > 0
+          ? (
+            <>
+              <p>{t('DEALS_2X_LBL')}</p>
+              <div className='result-group'>
+                {x2.map(t => buildResultBox('x2', t))}
+              </div>
+            </>
+          )
+          : null
+      }
+      
+      {
+        x1.length > 0
+          ? (
+            <>
+              <p>{t('DEALS_1X_LBL')}</p>
+              <div className='result-group'>
+                {x1.map(t => buildResultBox('x1', t))}
+              </div>
+            </>
+          )
+          : null
+      }
+      
+      {
+        x05.length > 0
+          ? (
+            <>
+              <p>{t('DEALS_05X_LBL')}</p>
+              <div className='result-group'>
+                {x05.map(t => buildResultBox('x05', t))}
+              </div>
+            </>
+          )
+          : null
+      }
+      
+      {
+        x0.length > 0
+          ? (
+            <>
+              <p>{t('DEALS_0X_LBL')}</p>
+              <div className='result-group'>
+                {x0.map(t => buildResultBox('x0', t))}
+              </div>
+            </>
+          )
+          : null
+      }
+      
     </div>
   );
 }
@@ -77,35 +111,84 @@ export const TypesForDefense: React.FC<{ primaryType: Types, secondaryType?: Typ
   const { x4, x2, x1, x05, x025, x0 } = Calculator.getForDefense(primaryType, secondaryType ? secondaryType : -1);
   return (
     <div className='result-container'>
-      <p>{t('TAKES_4X_LBL')}</p>
-      <div className='result-group'>
-        {x4.map(t => buildResultBox('dx4', t))}
-      </div>
-
-      <p>{t('TAKES_2X_LBL')}</p>
-      <div className='result-group'>
-        {x2.map(t => buildResultBox('dx2', t))}
-      </div>
-
-      <p>{t('TAKES_1X_LBL')}</p>
-      <div className='result-group'>
-        {x1.map(t => buildResultBox('dx1', t))}
-      </div>
-
-      <p>{t('TAKES_05X_LBL')}</p>
-      <div className='result-group'>
-        {x05.map(t => buildResultBox('dx05', t))}
-      </div>
-
-      <p>{t('TAKES_025X_LBL')}</p>
-      <div className='result-group'>
-        {x025.map(t => buildResultBox('dx025', t))}
-      </div>
-
-      <p>{t('TAKES_0X_LBL')}</p>
-      <div className='result-group'>
-        {x0.map(t => buildResultBox('dx0', t))}
-      </div>
+      {
+        x4.length > 0
+          ? (
+            <>
+              <p>{t('TAKES_4X_LBL')}</p>
+              <div className='result-group'>
+                {x4.map(t => buildResultBox('dx4', t))}
+              </div>
+            </>
+          )
+          : null
+      }
+      
+      {
+        x2.length > 0
+          ? (
+            <>
+              <p>{t('TAKES_2X_LBL')}</p>
+              <div className='result-group'>
+                {x2.map(t => buildResultBox('dx2', t))}
+              </div>
+            </>
+          )
+          : null
+      }
+      
+      {
+        x1.length > 0
+          ? (
+            <>
+              <p>{t('TAKES_1X_LBL')}</p>
+              <div className='result-group'>
+                {x1.map(t => buildResultBox('dx1', t))}
+              </div>
+            </>
+          )
+          : null
+      }
+      
+      {
+        x05.length > 0
+          ? (
+            <>
+              <p>{t('TAKES_05X_LBL')}</p>
+              <div className='result-group'>
+                {x05.map(t => buildResultBox('dx05', t))}
+              </div>
+            </>
+          )
+          : null
+      }
+      
+      {
+        x025.length > 0
+          ? (
+            <>
+              <p>{t('TAKES_025X_LBL')}</p>
+              <div className='result-group'>
+                {x025.map(t => buildResultBox('dx025', t))}
+              </div>
+            </>
+          )
+          : null
+      }
+      
+      {
+        x0.length > 0
+          ? (
+            <>
+              <p>{t('TAKES_0X_LBL')}</p>
+              <div className='result-group'>
+                {x0.map(t => buildResultBox('dx0', t))}
+              </div>
+            </>
+          )
+          : null
+      }
+      
     </div>
   );
 }
