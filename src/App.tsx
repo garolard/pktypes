@@ -70,8 +70,8 @@ const App: React.FC = () => {
 
       <nav className='navigation'>
         <div className='tabs-container'>
-          <button className={mode === Modes.ATTACK ? 'selected' : ''} onClick={() => setMode(Modes.ATTACK)}>Ataque</button>
-          <button className={mode === Modes.DEFENSE ? 'selected' : ''} onClick={() => setMode(Modes.DEFENSE)}>Defensa</button>
+          <button className={mode === Modes.ATTACK ? 'selected' : ''} onClick={() => setMode(Modes.ATTACK)}>{t('ATTACK_BTN')}</button>
+          <button className={mode === Modes.DEFENSE ? 'selected' : ''} onClick={() => setMode(Modes.DEFENSE)}>{t('DEFENSE_BTN')}</button>
         </div>
       </nav>
 
