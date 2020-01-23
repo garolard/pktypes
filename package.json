@@ -10,6 +10,7 @@
     "@types/node": "^12.12.24",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
+    "classnames": "^2.2.6",
     "i18next": "^19.0.3",
     "i18next-browser-languagedetector": "^4.0.1",
     "react": "^16.12.0",
@@ -41,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.9",
     "i18n-tool": "file:../i18n-tool"
   }
 }

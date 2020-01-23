@@ -1,4 +1,6 @@
 import React, { useState, useRef } from 'react';
+import classnames from 'classnames';
+
 import './App.css';
 import './App.small.css';
 
@@ -15,18 +17,29 @@ enum Modes {
   POKEDEX
 }
 
-const scrollToRef = (ref: React.RefObject<HTMLElement>) => ref.current!.scrollIntoView();
+const scrollToRef = (ref: React.RefObject<HTMLElement>) => setTimeout(() => ref.current!.scrollIntoView(), 100);
 
 const App: React.FC = () => {
 
   const { t } = useTranslation();
 
-  const secondaryTypeRef = useRef(null);
-  const resultBoxRef = useRef(null);
+  const secondaryTypeRef: React.MutableRefObject<HTMLDivElement | null> = useRef(null);
+  const secondaryButtonGrid: React.MutableRefObject<HTMLDivElement | null> = useRef(null);
+  const resultBoxRef: React.MutableRefObject<HTMLDivElement | null> = useRef(null);
 
   const [mode, setMode] = useState(Modes.ATTACK);
   const [primaryType, setPrimaryType] = useState(-1);
   const [secondaryType, setSecondaryType] = useState(-1);
+
+  const animateSecondaryContainer = () => { 
+    if (!secondaryButtonGrid)
+      return;
+    
+    secondaryButtonGrid.current!.classList.add('animate');
+    setTimeout(() => {
+      secondaryButtonGrid.current!.classList.remove('animate');
+    }, 550);
+  };
 
   const typesButtons = (primaryOrSecondary: 1 | 2, setTypeFn: React.Dispatch<React.SetStateAction<number>>) => {
     const buttons = Array.from(Array(18).keys()).map(t => {
@@ -39,25 +52,27 @@ const App: React.FC = () => {
         if (primaryOrSecondary === 1)
           if (mode === Modes.ATTACK)
             scrollToRef(resultBoxRef);
-          else
+          else {
             scrollToRef(secondaryTypeRef);
+            animateSecondaryContainer();
+          }
         else
           scrollToRef(resultBoxRef);
       };
 
-      let typeClass = `type-button ${Types[t].toLocaleLowerCase()}`;
+      const classes = ['type-button', Types[t].toLocaleLowerCase()];
 
       if ((primaryOrSecondary === 1 && t === primaryType) ||
           ((primaryOrSecondary === 2 && t === secondaryType) &&
           (primaryOrSecondary === 2 && primaryType !== t)))
-        typeClass += ' selected';
+        classes.push('selected');
       
-      return <button key={t} className={typeClass} disabled={primaryOrSecondary === 2 && primaryType === t} onClick={click}>{localizeType(t)}</button>
+      return <button key={t} className={classnames(classes)} disabled={primaryOrSecondary === 2 && primaryType === t} onClick={click}>{localizeType(t)}</button>
     });
 
     if (primaryOrSecondary === 2) {
       const typeClass = `type-button ${secondaryType < 0 ? 'selected' : ''}`;
-      return [<button className={typeClass} onClick={() => setSecondaryType(-1)}>Ninguno</button>].concat(buttons);
+      return [<button key={-1} className={typeClass} onClick={() => setSecondaryType(-1)}>Ninguno</button>].concat(buttons);
     }
     
     return buttons;
@@ -84,7 +99,7 @@ const App: React.FC = () => {
 
         <div ref={secondaryTypeRef} style={{ display: mode === Modes.DEFENSE ? 'grid' : 'none'}}>
           <h5>{t('SECONDARY_TYPE_LBL')}</h5>
-          <div className='buttons-grid'>{mode === Modes.DEFENSE ? typesButtons(2, setSecondaryType) : null}</div>
+          <div ref={secondaryButtonGrid} className='buttons-grid secondary'>{mode === Modes.DEFENSE ? typesButtons(2, setSecondaryType) : null}</div>
         </div>
         
         <div ref={resultBoxRef}>
