@@ -8,7 +8,7 @@ export enum Types {
   FIRE,
   FAIRY,
   ICE,
-  FIGHT,
+  FIGHTING,
   NORMAL,
   GRASS,
   PSYCHIC,

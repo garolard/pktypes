@@ -1,6 +1,7 @@
 TITLE_LBL=Pokémon Type Calculator
 ATTACK_BTN=Attack
 DEFENSE_BTN=Defense
+POKEDEX_BTN=Pokédex
 PRIMARY_TYPE_LBL=Choose a type
 SECONDARY_TYPE_LBL=Choose a secondary type
 DEALS_2X_LBL=Makes ×2 damage to
@@ -22,7 +23,7 @@ TYPE_GHOST=Ghost
 TYPE_FIRE=Fire
 TYPE_FAIRY=Fairy
 TYPE_ICE=Ice
-TYPE_FIGHT=Fight
+TYPE_FIGHT=Fighting
 TYPE_NORMAL=Normal
 TYPE_GRASS=Grass
 TYPE_PSYCHIC=Psychic

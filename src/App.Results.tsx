@@ -16,7 +16,7 @@ export const localizeType = (type: number): string => {
     case Types.FIRE: return i18n.t('TYPE_FIRE');
     case Types.FAIRY: return i18n.t('TYPE_FAIRY');
     case Types.ICE: return i18n.t('TYPE_ICE');
-    case Types.FIGHT: return i18n.t('TYPE_FIGHT');
+    case Types.FIGHTING: return i18n.t('TYPE_FIGHT');
     case Types.NORMAL: return i18n.t('TYPE_NORMAL');
     case Types.GRASS: return i18n.t('TYPE_GRASS');
     case Types.PSYCHIC: return i18n.t('TYPE_PSYCHIC');

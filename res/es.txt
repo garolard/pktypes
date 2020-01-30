@@ -1,6 +1,7 @@
 TITLE_LBL=Calculadora de Tipos Pokémon
 ATTACK_BTN=Ataque
 DEFENSE_BTN=Defensa
+POKEDEX_BTN=Pokédex
 PRIMARY_TYPE_LBL=Elige un tipo
 SECONDARY_TYPE_LBL=Elige un tipo secundario
 DEALS_2X_LBL=Hace ×2 de daño a

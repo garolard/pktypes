@@ -209,6 +209,10 @@ html {
   background-color: var(--fight-color);
 }
 
+.fighting.result-box {
+  background-color: var(--fight-color);
+}
+
 .normal.result-box {
   background-color: var(--normal-color);
 }
@@ -279,6 +283,10 @@ html {
 }
 
 .fight.type-button::before {
+  background-color: var(--fight-color);
+}
+
+.fighting.type-button::before {
   background-color: var(--fight-color);
 }
 
