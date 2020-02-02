@@ -17,7 +17,6 @@ enum Modes {
   POKEDEX
 }
 
-// const scrollToRef = (ref: React.RefObject<HTMLElement>) => setTimeout(() => ref.current!.scrollIntoView(), 100);
 
 const App: React.FC = () => {
 

@@ -1,6 +1,5 @@
 import * as React from 'react';
-import i18n from 'i18next';
-import { useTranslation } from 'react-i18next';
+import i18n, { TFunction } from 'i18next';
 
 import * as Calculator from './Calc';
 import { Types } from './Calc';
@@ -53,43 +52,90 @@ const ResultElements: React.FC<{ resultType: string, title: string, elements: nu
 type ResultProps = {
   primaryType: Types;
   secondaryType?: Types;
+  t: TFunction;
+};
+
+class Result extends React.Component<ResultProps> {
+
+  private ref = React.createRef<HTMLDivElement>();
+
+  scrollToThis = () => {
+    this.ref && this.ref.current && this.ref.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
+  }
+
+  render() {
+    const { primaryType, secondaryType, t } = this.props;
+
+    if (primaryType < 0) return null;
+
+    const results = secondaryType !== undefined
+      ? Calculator.getForDefense(primaryType, secondaryType)
+      : Calculator.getForAttack(primaryType);
+
+    return (
+      <div ref={this.ref} className='result-container'>
+        {
+          secondaryType !== undefined
+            ? (
+              <>
+                <ResultElements title={t('TAKES_4X_LBL')} resultType='defense' elements={(results as Calculator.ForDefenseResult).x4} />
+                <ResultElements title={t('TAKES_2X_LBL')} resultType='defense' elements={(results as Calculator.ForDefenseResult).x2} />
+                <ResultElements title={t('TAKES_1X_LBL')} resultType='defense' elements={(results as Calculator.ForDefenseResult).x1} />
+                <ResultElements title={t('TAKES_05X_LBL')} resultType='defense' elements={(results as Calculator.ForDefenseResult).x05} />
+                <ResultElements title={t('TAKES_025X_LBL')} resultType='defense' elements={(results as Calculator.ForDefenseResult).x025} />
+                <ResultElements title={t('TAKES_0X_LBL')} resultType='defense' elements={(results as Calculator.ForDefenseResult).x0} />
+              </>
+            )
+            : (
+              <>
+                <ResultElements title={t('DEALS_2X_LBL')} resultType='attack' elements={(results as Calculator.ForAttackResult).x2} />
+                <ResultElements title={t('DEALS_1X_LBL')} resultType='attack' elements={(results as Calculator.ForAttackResult).x1} />
+                <ResultElements title={t('DEALS_05X_LBL')} resultType='attack' elements={(results as Calculator.ForAttackResult).x05} />
+                <ResultElements title={t('DEALS_0X_LBL')} resultType='attack' elements={(results as Calculator.ForAttackResult).x0} />
+              </>
+            )
+        }
+      </div>
+    );  
+  }
+
 }
 
-const Result: React.FC<ResultProps> = ({ primaryType, secondaryType }: ResultProps) => {
+// const Result: React.FC<ResultProps> = ({ primaryType, secondaryType }: ResultProps) => {
 
-  const { t } = useTranslation();
+//   const { t } = useTranslation();
 
-  if (primaryType < 0) return null;
+//   if (primaryType < 0) return null;
 
-  const results = secondaryType !== undefined
-    ? Calculator.getForDefense(primaryType, secondaryType)
-    : Calculator.getForAttack(primaryType);
+//   const results = secondaryType !== undefined
+//     ? Calculator.getForDefense(primaryType, secondaryType)
+//     : Calculator.getForAttack(primaryType);
 
-  return (
-    <div className='result-container'>
-      {
-        secondaryType !== undefined
-          ? (
-            <>
-              <ResultElements title={t('TAKES_4X_LBL')} resultType='defense' elements={(results as Calculator.ForDefenseResult).x4} />
-              <ResultElements title={t('TAKES_2X_LBL')} resultType='defense' elements={(results as Calculator.ForDefenseResult).x2} />
-              <ResultElements title={t('TAKES_1X_LBL')} resultType='defense' elements={(results as Calculator.ForDefenseResult).x1} />
-              <ResultElements title={t('TAKES_05X_LBL')} resultType='defense' elements={(results as Calculator.ForDefenseResult).x05} />
-              <ResultElements title={t('TAKES_025X_LBL')} resultType='defense' elements={(results as Calculator.ForDefenseResult).x025} />
-              <ResultElements title={t('TAKES_0X_LBL')} resultType='defense' elements={(results as Calculator.ForDefenseResult).x0} />
-            </>
-          )
-          : (
-            <>
-              <ResultElements title={t('DEALS_2X_LBL')} resultType='attack' elements={(results as Calculator.ForAttackResult).x2} />
-              <ResultElements title={t('DEALS_1X_LBL')} resultType='attack' elements={(results as Calculator.ForAttackResult).x1} />
-              <ResultElements title={t('DEALS_05X_LBL')} resultType='attack' elements={(results as Calculator.ForAttackResult).x05} />
-              <ResultElements title={t('DEALS_0X_LBL')} resultType='attack' elements={(results as Calculator.ForAttackResult).x0} />
-            </>
-          )
-      }
-    </div>
-  );
-};
+//   return (
+//     <div className='result-container'>
+//       {
+//         secondaryType !== undefined
+//           ? (
+//             <>
+//               <ResultElements title={t('TAKES_4X_LBL')} resultType='defense' elements={(results as Calculator.ForDefenseResult).x4} />
+//               <ResultElements title={t('TAKES_2X_LBL')} resultType='defense' elements={(results as Calculator.ForDefenseResult).x2} />
+//               <ResultElements title={t('TAKES_1X_LBL')} resultType='defense' elements={(results as Calculator.ForDefenseResult).x1} />
+//               <ResultElements title={t('TAKES_05X_LBL')} resultType='defense' elements={(results as Calculator.ForDefenseResult).x05} />
+//               <ResultElements title={t('TAKES_025X_LBL')} resultType='defense' elements={(results as Calculator.ForDefenseResult).x025} />
+//               <ResultElements title={t('TAKES_0X_LBL')} resultType='defense' elements={(results as Calculator.ForDefenseResult).x0} />
+//             </>
+//           )
+//           : (
+//             <>
+//               <ResultElements title={t('DEALS_2X_LBL')} resultType='attack' elements={(results as Calculator.ForAttackResult).x2} />
+//               <ResultElements title={t('DEALS_1X_LBL')} resultType='attack' elements={(results as Calculator.ForAttackResult).x1} />
+//               <ResultElements title={t('DEALS_05X_LBL')} resultType='attack' elements={(results as Calculator.ForAttackResult).x05} />
+//               <ResultElements title={t('DEALS_0X_LBL')} resultType='attack' elements={(results as Calculator.ForAttackResult).x0} />
+//             </>
+//           )
+//       }
+//     </div>
+//   );
+// };
 
 export default Result;
