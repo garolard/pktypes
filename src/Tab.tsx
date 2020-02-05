@@ -41,7 +41,7 @@ class TabButtonsContainer extends React.Component<TabButtonsContainerProps> {
 
 		if (disableOnType !== undefined) {
 			const typeClass = `type-button ${type < 0 ? 'selected' : ''}`
-			buttons = [<button key={-1} className={typeClass} onClick={() => onTypeSelected && onTypeSelected(-1)}>Ninguno</button>].concat(buttons);
+			buttons = [<button key={-1} className={typeClass} onClick={() => onTypeSelected && onTypeSelected(-1)}>{localizeType(-1)}</button>].concat(buttons);
 		}
 
 		return (

@@ -24,7 +24,7 @@ export const localizeType = (type: number): string => {
     case Types.GROUND: return i18n.t('TYPE_GROUND');
     case Types.POISON: return i18n.t('TYPE_POISON');
     case Types.FLY: return i18n.t('TYPE_FLY');
-    default: return '';
+    default: return i18n.t('TYPE_NONE');
   }
 };
 
@@ -60,7 +60,7 @@ class Result extends React.Component<ResultProps> {
   private ref = React.createRef<HTMLDivElement>();
 
   scrollToThis = () => {
-    this.ref && this.ref.current && this.ref.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
+    this.ref && this.ref.current && this.ref.current.scrollIntoView({ block: 'start', behavior: 'smooth' });
   }
 
   render() {

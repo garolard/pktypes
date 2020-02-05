@@ -32,3 +32,4 @@ TYPE_DARK=Siniestro
 TYPE_GROUND=Tierra
 TYPE_POISON=Veneno
 TYPE_FLY=Volador
+TYPE_NONE=Ninguno

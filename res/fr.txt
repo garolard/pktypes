@@ -32,3 +32,4 @@ TYPE_DARK=Sinistre
 TYPE_GROUND=Terre
 TYPE_POISON=Poison
 TYPE_FLY=Volant
+TYPE_NONE=Aucun
