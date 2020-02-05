@@ -1,13 +1,14 @@
 import * as React from 'react';
+
 import classnames from 'classnames';
+
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Result, { localizeType } from './Result';
-import { Types } from './Calc';
+import Result from './Result';
 
-
-const scrollToRef = (ref: React.RefObject<{ scrollToThis: () => void }>) => setTimeout(() => ref.current!.scrollToThis(), 100);
+import { Types } from '../../calc';
+import { scrollToRef, IScrollableTo, localizeType } from '../util';
 
 
 type TabButtonsContainerProps = {
@@ -17,7 +18,7 @@ type TabButtonsContainerProps = {
 	onTypeSelected?: (type: Types) => void;
 };
 
-class TabButtonsContainer extends React.Component<TabButtonsContainerProps> {
+class TabButtonsContainer extends React.Component<TabButtonsContainerProps> implements IScrollableTo {
 
 	private ref = React.createRef<HTMLDivElement>();
 
