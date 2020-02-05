@@ -1,6 +1,6 @@
 import i18n from 'i18next';
 
-import { Types } from '../../calc';
+import { Types } from '../../calculator';
 
 export interface IScrollableTo {
 	scrollToThis: () => void;

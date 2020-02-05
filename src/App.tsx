@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Header } from './App.Header';
 import { Footer } from './App.Footer';
-import { Types } from './Calc';
+import { Types } from './calculator';
 
 import { AttackTab, DefenseTab } from './ui/controls/Tab';
 

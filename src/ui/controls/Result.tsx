@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { TFunction } from 'i18next';
 
-import * as Calculator from '../../calc';
+import * as Calculator from '../../calculator';
 
-import { Types } from '../../calc';
+import { Types } from '../../calculator';
 import { localizeType } from '../util';
 
 
