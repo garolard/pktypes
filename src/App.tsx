@@ -10,6 +10,7 @@ import { Footer } from './App.Footer';
 import { Types } from './calculator';
 
 import { AttackTab, DefenseTab } from './ui/controls/Tab';
+import { PokedexTab } from './ui/controls/PokedexTab';
 
 enum Modes {
   ATTACK,
@@ -48,7 +49,7 @@ const App: React.FC = () => {
           onPrimaryTypeSelected={onPrimaryTypeSelected}
           onSecondaryTypeSelected={onSecondaryTypeSelected} />;
       case Modes.POKEDEX:
-        return null;
+        return <PokedexTab onPokemonSelected={() => {}} />;
     }
   }
 
@@ -61,7 +62,7 @@ const App: React.FC = () => {
         <div className='tabs-container'>
           <button className={mode === Modes.ATTACK ? 'selected' : ''} onClick={() => setMode(Modes.ATTACK)}>{t('ATTACK_BTN')}</button>
           <button className={mode === Modes.DEFENSE ? 'selected' : ''} onClick={() => setMode(Modes.DEFENSE)}>{t('DEFENSE_BTN')}</button>
-          {/* <button className={mode === Modes.POKEDEX ? 'selected' : ''} onClick={() => setMode(Modes.POKEDEX)}>{t('POKEDEX_BTN')}</button> */}
+          <button className={mode === Modes.POKEDEX ? 'selected' : ''} onClick={() => setMode(Modes.POKEDEX)}>{t('POKEDEX_BTN')}</button>
         </div>
       </nav>
 

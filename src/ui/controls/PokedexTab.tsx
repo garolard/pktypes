@@ -7,7 +7,8 @@ type Props = {
 export const PokedexTab: React.FC<Props> = ({ onPokemonSelected }: Props) => {
 	return (
     <>
-      {/* Implementar */}
-		</>
+      <input />
+      <h1>caca</h1>
+	  </>
 	);
 }
