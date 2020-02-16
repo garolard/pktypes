@@ -7,9 +7,9 @@ import { Types } from '../../calculator';
 import { localizeType } from '../util';
 
 
-const ResultType: React.FC<{ type: Types }> = ({ type }: { type: Types }) => {
-  const classes = `result-box ${Types[type].toLocaleLowerCase()}`;
-  return <span  className={classes}><strong>{localizeType(type)}</strong></span>;
+export const ResultType: React.FC<{ type: Types, small?: boolean }> = ({ type, small }: { type: Types, small?: boolean }) => {
+  const classes = `result-box ${Types[type].toLocaleLowerCase()} ${small ? 'small' : ''}`;
+  return <span className={classes}><strong>{localizeType(type)}</strong></span>;
 }
 
 const ResultElements: React.FC<{ resultType: string, title: string, elements: number[] }> = ({ resultType, title, elements }: { resultType: string, title: string, elements: number[] }) => {

@@ -169,6 +169,12 @@ html {
   border-radius: 3px;
 }
 
+.result-box.small {
+  padding: 0px 4px;
+  font-weight: 300;
+  font-size: small;
+}
+
 .steel.result-box {
   background-color: var(--steel-color);
 }

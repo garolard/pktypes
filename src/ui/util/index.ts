@@ -40,3 +40,14 @@ export function hashCode(s: string) {
 
     return h;
 }
+
+export function padWithZero(n: number) {
+	const zeros = 3 - n.toString().length;
+	let res = '';
+
+	for (let i = 0; i < zeros; i++) {
+		res += '0';
+	}
+
+	return res + n.toString();
+}

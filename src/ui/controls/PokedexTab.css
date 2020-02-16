@@ -1,0 +1,42 @@
+input.poke-search-input {
+  width: calc(100% - 2em); /* Todo el ancho menos el padding */
+  margin-top: 2em;
+  padding: 1em;
+  border-radius: 5px;
+  border: 1px solid rgba(0,0,0,.15);
+}
+
+ul.poke-list {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  border: 1px solid rgba(0,0,0,.07);
+  box-shadow: 0px 1px 5px rgba(0,0,0,.1);
+  border-radius: 3px;
+}
+
+ul.poke-list li {
+  padding: 1em 2em;
+  background-color: #fffcfc;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+
+ul.poke-list li:nth-child(1) {
+  border-radius: 3px 3px 0 0;
+}
+
+ul.poke-list li:nth-last-child(1) {
+  border-radius: 0 0 3px 3px;
+  border-bottom: none;
+}
+
+ul.poke-list em {
+  font-style: normal;
+  font-weight: 500;
+  color: #C2C3C7;
+}
+
+ul.poke-list strong {
+  font-style: normal;
+  font-weight: 700;
+}

@@ -2,7 +2,10 @@ import * as React from 'react';
 import { useState } from 'react';
 
 import Pokedex, { PokedexEntry } from '../../pokedex';
-import { hashCode } from '../util';
+import { hashCode, padWithZero } from '../util';
+import { ResultType } from '../controls/Result';
+
+import './PokedexTab.css'
 
 type Props = {
   onPokemonSelected: (pokemon: PokedexEntry) => void;
@@ -16,7 +19,16 @@ function buildPokemonList(pokes: PokedexEntry[], onPokemonSelected: (pokemon: Po
       key += hashCode(p.type[i]);
     }
 
-    return <li key={key} onClick={() => onPokemonSelected(p)}>{p.name}</li>
+    const types = p.type.map(t => <ResultType type={2} small />);
+
+    return (
+      <li key={key} onClick={() => onPokemonSelected(p)}>
+        <span><em>#{padWithZero(p.id)}</em> <strong>{p.name}</strong></span>
+        <div>
+          {types}
+        </div>
+      </li>
+    );
   });
 }
 
@@ -32,8 +44,8 @@ export const PokedexTab: React.FC<Props> = ({ onPokemonSelected }: Props) => {
 
   return (
     <>
-      <input onChange={searchPokemon} />
-      <ul>
+      <input className='poke-search-input' onChange={searchPokemon} />
+      <ul className='poke-list'>
         {buildPokemonList(results, onPokemonSelected)}
       </ul>
     </>
