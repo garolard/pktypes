@@ -16,7 +16,12 @@ export enum Types {
   DARK,
   GROUND,
   POISON,
-  FLY
+  FLYING
+}
+
+export function stringToType(typeString: string): Types {
+  const typedTypeString = typeString.toUpperCase() as keyof typeof Types;
+  return Types[typedTypeString];
 }
 
 const typesMatrix = [

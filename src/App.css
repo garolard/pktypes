@@ -247,7 +247,7 @@ html {
   background-color: var(--poison-color);
 }
 
-.fly.result-box {
+.flying.result-box {
   background-color: var(--fly-color);
 }
 
@@ -324,6 +324,6 @@ html {
   background-color: var(--poison-color);
 }
 
-.fly.type-button::before {
+.flying.type-button::before {
   background-color: var(--fly-color);
 }

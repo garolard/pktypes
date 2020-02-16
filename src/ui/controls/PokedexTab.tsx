@@ -6,6 +6,7 @@ import { hashCode, padWithZero } from '../util';
 import { ResultType } from '../controls/Result';
 
 import './PokedexTab.css'
+import { stringToType } from '../../calculator';
 
 type Props = {
   onPokemonSelected: (pokemon: PokedexEntry) => void;
@@ -19,7 +20,7 @@ function buildPokemonList(pokes: PokedexEntry[], onPokemonSelected: (pokemon: Po
       key += hashCode(p.type[i]);
     }
 
-    const types = p.type.map(t => <ResultType type={2} small />);
+    const types = p.type.map(t => <ResultType key={hashCode(t)} type={stringToType(t)} small />);
 
     return (
       <li key={key} onClick={() => onPokemonSelected(p)}>

@@ -28,7 +28,7 @@ export const localizeType = (type: number): string => {
 		case Types.DARK: return i18n.t('TYPE_DARK');
 		case Types.GROUND: return i18n.t('TYPE_GROUND');
 		case Types.POISON: return i18n.t('TYPE_POISON');
-		case Types.FLY: return i18n.t('TYPE_FLY');
+		case Types.FLYING: return i18n.t('TYPE_FLY');
 		default: return i18n.t('TYPE_NONE');
 	}
 };

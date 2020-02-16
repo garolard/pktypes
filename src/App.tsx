@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Header } from './App.Header';
 import { Footer } from './App.Footer';
-import { Types } from './calculator';
+import { Types, stringToType } from './calculator';
 
 import { AttackTab, DefenseTab } from './ui/controls/Tab';
 import { PokedexTab } from './ui/controls/PokedexTab';
@@ -39,9 +39,12 @@ const App: React.FC = () => {
 
   const onPokemonSelected = (poke: PokedexEntry) => {
     setMode(Modes.DEFENSE);
+    setPrimaryType(stringToType(poke.type[0]));
+    if (poke.type.length > 1)
+      setSecondaryType(stringToType(poke.type[1]));
   }
 
-  const tab = () => {
+  const activeTab = () => {
     switch (mode) {
       case Modes.ATTACK:
         return <AttackTab
@@ -74,7 +77,7 @@ const App: React.FC = () => {
       <section className='app-container'>
         
         <div>
-          {tab()}
+          {activeTab()}
         </div>
 
       </section>
