@@ -40,8 +40,11 @@ const App: React.FC = () => {
   const onPokemonSelected = (poke: PokedexEntry) => {
     setMode(Modes.DEFENSE);
     setPrimaryType(stringToType(poke.type[0]));
+
     if (poke.type.length > 1)
       setSecondaryType(stringToType(poke.type[1]));
+    else
+      setSecondaryType(-1);
   }
 
   const activeTab = () => {

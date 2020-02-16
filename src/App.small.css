@@ -9,8 +9,8 @@
   }
   
   .navigation > .tabs-container {
-    width: 80%;    
-    max-width: 80%;
+    width: 100%;    
+    max-width: 100%;
   }
 
   .tabs-container > button {
