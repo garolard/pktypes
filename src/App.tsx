@@ -11,6 +11,7 @@ import { Types } from './calculator';
 
 import { AttackTab, DefenseTab } from './ui/controls/Tab';
 import { PokedexTab } from './ui/controls/PokedexTab';
+import { PokedexEntry } from './pokedex';
 
 enum Modes {
   ATTACK,
@@ -36,6 +37,10 @@ const App: React.FC = () => {
 
   const onSecondaryTypeSelected = (type: Types) => setSecondaryType(type);
 
+  const onPokemonSelected = (poke: PokedexEntry) => {
+    setMode(Modes.DEFENSE);
+  }
+
   const tab = () => {
     switch (mode) {
       case Modes.ATTACK:
@@ -49,7 +54,7 @@ const App: React.FC = () => {
           onPrimaryTypeSelected={onPrimaryTypeSelected}
           onSecondaryTypeSelected={onSecondaryTypeSelected} />;
       case Modes.POKEDEX:
-        return <PokedexTab onPokemonSelected={() => {}} />;
+        return <PokedexTab onPokemonSelected={onPokemonSelected} />;
     }
   }
 

@@ -8,7 +8,7 @@ type Props = {
   onPokemonSelected: (pokemon: PokedexEntry) => void;
 };
 
-function buildPokemonList(pokes: PokedexEntry[]) {
+function buildPokemonList(pokes: PokedexEntry[], onPokemonSelected: (pokemon: PokedexEntry) => void) {
   return pokes.map(p => {
     let key = p.id.toString();
 
@@ -16,7 +16,7 @@ function buildPokemonList(pokes: PokedexEntry[]) {
       key += hashCode(p.type[i]);
     }
 
-    return <li key={key}>{p.name}</li>
+    return <li key={key} onClick={() => onPokemonSelected(p)}>{p.name}</li>
   });
 }
 
@@ -34,7 +34,7 @@ export const PokedexTab: React.FC<Props> = ({ onPokemonSelected }: Props) => {
     <>
       <input onChange={searchPokemon} />
       <ul>
-        {buildPokemonList(results)}
+        {buildPokemonList(results, onPokemonSelected)}
       </ul>
     </>
   );
