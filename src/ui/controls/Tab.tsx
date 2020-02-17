@@ -1,14 +1,12 @@
 import * as React from 'react';
 
 import classnames from 'classnames';
-
-import { useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-
 import Result from './Result';
 
+import { IScrollableTo, localizeType, scrollToRef } from '../util';
 import { Types } from '../../calculator';
-import { scrollToRef, IScrollableTo, localizeType } from '../util';
+import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 
 type TabButtonsContainerProps = {

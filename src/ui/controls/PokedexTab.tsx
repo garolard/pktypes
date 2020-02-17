@@ -5,7 +5,8 @@ import Pokedex, { PokedexEntry } from '../../pokedex';
 import { hashCode, padWithZero } from '../util';
 import { ResultType } from '../controls/Result';
 
-import './PokedexTab.css'
+import './PokedexTab.css';
+import './PokedexTab.small.css';
 import { stringToType } from '../../calculator';
 
 type Props = {
@@ -35,7 +36,7 @@ function buildPokemonList(pokes: PokedexEntry[], onPokemonSelected: (pokemon: Po
 
 export const PokedexTab: React.FC<Props> = ({ onPokemonSelected }: Props) => {
 
-  const [results, setResults] = useState([] as PokedexEntry[]);
+  const [results, setResults] = useState(Pokedex);
 
   const searchPokemon = (ev: any) => {
     const value = ev.target.value;
@@ -44,11 +45,13 @@ export const PokedexTab: React.FC<Props> = ({ onPokemonSelected }: Props) => {
   }
 
   return (
-    <>
-      <input className='poke-search-input' onChange={searchPokemon} />
+    <div className='poke-list-container'>
+      <span className='poke-search-input-wrapper'>
+        <input className='poke-search-input' onChange={searchPokemon} placeholder='Pikachu...' />
+      </span>
       <ul className='poke-list'>
         {buildPokemonList(results, onPokemonSelected)}
       </ul>
-    </>
+    </div>
   );
 }

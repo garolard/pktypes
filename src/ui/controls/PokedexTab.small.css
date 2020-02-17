@@ -1,0 +1,6 @@
+@media (max-width: 420px) {
+	.poke-list-container {
+    max-width: 100%;
+    margin: 0;
+  }
+}

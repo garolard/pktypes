@@ -1,9 +1,34 @@
+.poke-list-container {
+  max-width: 60%;
+  margin: 0 auto;
+}
+
 input.poke-search-input {
-  width: calc(100% - 2em); /* Todo el ancho menos el padding */
+  width: calc(100% - 1em); /* Todo el ancho menos el padding */
   margin-top: 2em;
-  padding: 1em;
-  border-radius: 5px;
+  padding: .5em;
+  border-radius: 2em;
   border: 1px solid rgba(0,0,0,.15);
+  font-weight: 500;
+  font-size: medium;
+}
+
+.poke-search-input-wrapper {
+  position: relative;
+}
+
+.poke-search-input-wrapper:after {
+  content: '';
+  background: url(./search.png);
+  background-size: cover;
+  display: block;
+  position: absolute;
+  right: 12px;
+  top: 2px;
+  width: 19px;
+  height: 19px;
+  transform: rotateY(180deg);
+  transform-origin: center;
 }
 
 ul.poke-list {
